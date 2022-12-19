@@ -1,0 +1,12 @@
+{% extends 'base_staff.html' %}
+{% block main %}
+<div class="todo_form">
+   <form method="POST">
+        
+      {% csrf_token %}
+      {{ form.as_div }}
+
+        <input type="submit" value="{{ value }}">
+   </form>
+</div>
+{% endblock %}

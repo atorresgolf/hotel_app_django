@@ -1,0 +1,87 @@
+{% extends 'base6.html' %}
+{% load static %}
+{% block main %}
+        <section class="titulo">
+            <h1>RESERVAS</h1>
+        </section>
+        <div class="form">
+          <div class="todo_form alto_1">
+            
+              <form action="/reservas/" method="POST" class="card card-body alto_1">
+                
+              {{ error }}
+                  {% csrf_token %}
+                 
+                  <div class="">
+                  <!--    <label for="username">Username:</label>-->
+                  </div>
+                  <div class="input-group dbdp">
+                      <input type="date" name="check_in" class="form-control" placeholder="Ingrese su username" id="check_in">
+                  </div>
+                  <div class="">
+                 <!--     <label for="first_name">Nombre:</label>-->
+                 </div>
+                 <div class="input-group dbdp">
+                      <input type="date" name="check_out" class="form-control" placeholder="Ingrese su nombre " id="check_out">
+                  </div>
+                  <div class="">
+                  <!--   <label for="last_name">Apellido:</label>--> 
+                </div>
+                <div class="input-group dbdp">
+                      <input type="number" name="adultos" class="form-control" placeholder="Ingrese su apellido " id="adultos">
+                  </div>
+                  <div class="">
+                  <!--    <label for="email">Email:</label>-->
+                </div>
+                <div class="input-group dbdp">
+                      <input type="number" name="ninios" class="form-control" placeholder="Ingrese su email" id="ninios">
+                  </div>
+      
+                  <div class="">
+                <!--      <label for="password1">Password:</label>-->
+              </div>
+              <div class="input-group dbdp">
+                      <input type="numer" name="telefono" class="form-control" placeholder="Write your password" id="telefono">
+                  </div>
+                  <div class="">
+                 <!--     <label for="password2">Confirm your password:</label>-->
+                </div>
+                <div class="input-group dbdp">
+                      <textarea type="text" name="comentario" class="form-control"  id="comentario" rows="4"> Ingrese su comentario...</textarea>
+                  </div>
+                  <button class="btn btn-dark mt-3 ">
+                      Consultar
+                  </button>
+              
+              </form>
+          </div>
+             </div>
+          </div>
+      <!--
+        <section class="book">
+            <div class="container flex">
+              <div class="input grid">
+                <div class="box">
+                  <label>Check-in:</label>
+                  <input type="date" placeholder="Check-in-Date">
+                </div>
+                <div class="box">
+                  <label>Check-out:</label>
+                  <input type="date" placeholder="Check-out-Date">
+                </div>
+                <div class="box">
+                  <label>Adultos:</label> <br>
+                  <input type="number" placeholder="0">
+                </div>
+                <div class="box">
+                  <label>Niños:</label> <br>
+                  <input type="number" placeholder="0">
+                </div>
+              </div>
+              <div class="search">
+                <input type="submit" value="BUSCAR">
+              </div>
+            </div>
+          </section>
+          -->
+{% endblock %}

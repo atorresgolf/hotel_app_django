@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<!-- <div class="container-fluid"> -->
+    <div class="main-container container-fluid">
+        <div class="diamond"></div>
+        <div class="form-wrap">
+            
+            <form action="">
+                <div class="location">
+                    <h2 for="location">Resumen de su reserva</h2><br />
+                    <div class="hotel-detail">
+                        <img src="{{ room.image.url }}" name="room" class="room-img-fare" /><br />
+                        <h4>Habitación tipo: {{ room.categoria }}</h4>
+                        <p>{{ booking.adultos }} persona/s y {{ booking.ninios }} niños.</p>
+                        <p>Noches de alojamientos:   {{ days }} </p>
+                        <br>
+                    </div>
+                </div>
+                <hr>
+                <div class="guests row">
+                    <div class="col-6">
+                        <p>CheckIn:</p>
+                        <h5>{{ booking.check_in }},</h5>
+                        <p>a las: 3:00 PM</p>
+                    </div>
+                    <div class="col-6">
+                        <p>CheckOut:</p>
+                        <h5>{{ booking.check_out }},</h5>
+                        <p> a las: 11:00 AM</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="dates">
+                    <div class="arrival">
+                        <label> Total a pagar : u$s {{ precio }}</label>
+
+                    </div>
+                </div>
+
+                <a href="{% url 'success' %}" ><button class="btn btn-dark card-btn mt-2 mb-2" type="button">Confirmar Reserva</button></a>
+            </form>
+
+
+           
+        </div>
+
+    </div>
+{% endblock%}

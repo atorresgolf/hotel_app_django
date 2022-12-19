@@ -1,0 +1,124 @@
+
+{% extends 'base.html' %}
+{% block main %}
+{% if user.is_superuser %}
+<div class="container-py-8">
+    <section class="card card-body">
+        <div class="text-center">
+            {% load static %}
+            <img src="{% static 'assets/img/png/logo_celeste.png' %}" alt="logo" width="180" >
+        </div>
+        <h1 class="display-4 text-center">STAFF APP </h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, alias neque, obcaecati ad sed saepe aperiam provident illum odit et ipsa aliquam pariatur delectus rem officia soluta ipsum voluptatem hic inventore molestiae nemo? In officia minima dolorum! Neque ipsam accusantium beatae optio veritatis fugiat eum, iure similique quisquam, .</p>
+    </section>
+
+   
+   <div class="text-center">
+    <a class="btn btn-dark" href="{% url 'habitacion_list' %}">
+        Habitacion
+    </a>
+    <a class="btn btn-secondary" href="{% url 'categoria_habitacion' %}">
+        Categoria
+    </a>
+   
+    <a class="btn btn-dark" href="/reservas_list">Books</a>
+    <a class="btn btn-secondary" href="/usuarios_list">
+        Usuarios
+    </a>
+    </div>
+</div>
+<p>soy un super user</p>
+{% else %}
+        <section class="banner">
+            <div class="bird-container bird-container-one">
+                <div class="bird bird-one"></div>
+            </div>
+            
+            <div class="bird-container bird-container-two">
+                <div class="bird bird-two"></div>
+            </div>
+            
+            <div class="bird-container bird-container-three">
+                <div class="bird bird-three"></div>
+            </div>
+            
+            <div class="bird-container bird-container-four">
+                <div class="bird bird-four"></div>
+            </div>
+            
+            <div class="banner-text">
+                <h1>PYTHON HOTEL</h1>
+                <h2>Vení a <span>disfrutarlo</span></h2>
+               <!-- <div class="botones">
+                    <a href="galeria_imagenes.html" class="boton1">Explora</a>
+                    <a href="reservas.html" class="boton2">Reserva ya</a>
+                </div>-->
+           </div>
+        </section>
+        <section class="reservas_fixed">
+            <div class="reservar">
+               <a href="{% url 'create_book' %}"><h2>Book Now</h2></a> 
+            </div>
+        </section>
+       <section class="banner-descripcion">
+            <div class="descripcion">
+                <h2>El hotel Python es un hotel de 5 estrellas que está ubicado en el mejor lugar del Caribe: Aruba. Python es un hotel ideal tanto como para amigos, parejas en luna de miel como así también para una familia con niños y mascotas. A demás de contar con varias habitaciones para elegir también hay piletas, un restaurante, un spa, una sala de reuniones y un espacio para enventos especiales.
+                El estilo arquitectónico del hotel se encuentra en completa armonía con la maravillosa vista hacia las playas de arena blanca y las olas tranquilas del mar</h2>
+            </div>
+           <!-- <figure class="banner-image">
+                <img src="assets/img/vista2.jpg" alt="" class="descriptiva">
+            </figure>-->
+       </section>
+       <section class="banner-info">
+
+       </section>
+       <section class="wrap">
+            <div class="wrap-texto">
+                <h1>Tu hotel en Aruba</h1>
+            </div>
+       </section>
+
+       <section class="cards" style="--i:url(../assets/img/webp/hab_2.webp)">
+        <div class="card">
+            <div class="content">
+                <h2>HABITACIONES</h2>
+                <a href="{% url 'galeria_habitaciones' %}">Ver +</a>
+            </div>
+        </div>
+        <div class="card" style="--i:url(../assets/img/jpg/espacio_4.jpg)">
+            <div class="content">
+                <h2>ESPACIOS</h2>
+                <a href="{% url 'galeria_espacios' %}">Ver +</a>
+            </div>
+        </div>
+        <div class="card" style="--i:url(../assets/img/jpg/instal_8.jpg)">
+            <div class="content">
+                <h2>INSTALACIONES</h2>
+                <a href="{% url 'galeria_instalaciones' %}">Ver +</a>
+            </div>
+        </div>
+        <div class="card" style="--i:url(../assets/img/jpg/entretenimientos_3.jpg)">
+            <div class="content">
+                <h2>ENTRETENIMIENTOS</h2>
+                <a href="{% url 'galeria_entretenimientos' %}">Ver +</a>
+            </div>
+        </div>
+    
+       </section>
+        <section class="ubicacion">
+           <aside class="aside">
+               <div class="descripcion_ubicacion">
+                   <h2>Aruba es una pequeña isla del Caribe y se encuentra frente a las costas de Venezuela. Su clima es seco y soleado. Tiene playas de arena clara y olas suaves. No es húmedo por los constantes vientos alisios que traen brisas frescas. La influencia holandesa se ve en la arquitectura de los edificios de dos aguas pintados en tonos pasteles tropicales.</h2>
+               </div>
+           </aside>
+            <div class="mapa">
+                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d249277.91304526498!2d-70.10737546160301!3d12.518319212796765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8538cfe25a77db%3A0xf16a8a3e89818c2f!2sAruba!5e0!3m2!1ses-419!2sar!4v1663947918968!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+        <section class="ir_arriba">
+            <a href="#" class="go_top_btn">
+                <i class="fas fa-arrow-up"></i>
+            </a>
+        </section>
+    {% endif %}
+   {% endblock %}

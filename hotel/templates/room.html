@@ -1,0 +1,50 @@
+{% extends 'base5.html' %}
+{% load static %}
+{% block main %}
+<section class="titulo">
+    <h1>HABITACIONES DISPONIBLES</h1>
+</section>
+<section>
+      
+      <!--Cards-->
+      <div class="contenedor_habitaciones">
+        {% for ro in room %}
+      {% if ro.capacidad >= booking.adultos|add:booking.ninios %}
+        
+        <div class="cards_habitaciones">
+            <div class="card_img">
+                {% if ro.categoria.nombre == 'Doble' %}
+                <img src="{% static 'assets/img/jpg/habitacion_3.jpg' %}" alt="habitacion_2" class="card_imagen">
+                {% endif %}
+                    {% if ro.categoria.nombre == 'Superior' %}
+                <img src="{% static 'assets/img/jpg/habitacion_2.jpg' %}" alt="habitacion_2" class="card_imagen">
+                {% endif %}
+                     {% if ro.categoria.nombre == 'Suite' %}
+                <img src="{% static 'assets/img/jpg/habitacion_1.jpg' %}" alt="habitacion_2">
+                {% endif %}
+                    {% if ro.categoria.nombre == 'Suite Presidencial' %}
+                
+                <img src="{% static 'assets/img/jpg/habitacion_ancha.jpg' %}" alt="habitacion_4">
+                 {% endif %}
+                
+                
+            </div>
+            <div class="card_body text-center">
+                <h2>{{ro.categoria}}</h2>
+                <p>{{ro.detalle}}</p>
+                <p>precio u$s:  {{ro.precio}}</p>
+            </div>
+            <div class="card_footer">
+                <a href="{% url 'fare' ro.pk  %}"><button>Book Now</button></a>
+                
+            </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+      
+      
+      
+      
+      
+    </section>
+{% endblock %}

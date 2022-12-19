@@ -1,0 +1,27 @@
+{% extends 'base_book.html' %} {% block main %}
+
+<div class="form">
+  <div class="todo_form">
+    {{ form.media }}
+    <form method="POST">
+      {% csrf_token %} {{ form.as_div }}
+
+      <div id="register">
+      <!--  <input type="submit" value="{{ value }}" />-->
+        <button  type="submit" class="btn btn-secondary btn-xs me-2 " value="{{ value }}">Consultar</button>
+        <a href="{% url 'index' %}" class="btn btn-secondary btn-xs me-2 ">Cancelar</a>
+
+
+      </div>
+    </form>
+  </div>
+  <div class="card col-md-6 ms-6">
+      <h5> Bienvenido! {{ user.first_name}}</h5>
+      <div>
+         <p>Si tienes reservas seleccione aqui</p>
+         <a href="{% url 'books_user' %}" class="btn btn-secondary btn-xs me-2 ">Ver reservas</a>
+      </div>
+  </div>
+</div>
+
+{% endblock %}

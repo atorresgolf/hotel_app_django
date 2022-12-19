@@ -1,0 +1,75 @@
+{% extends 'base_staff.html' %}
+{% block main %}
+<div class="wrapper">
+    
+    <div class="fast_dashboard">
+        <h3>CANTIDAD DE USUARIOS</h3>
+        <h2>{{ cantidad }}</h2>
+        
+        {% if cantidad < 5 %}
+            <ul  class="lista_tareas">
+                {% for usuario in usuarios %}
+                    <li>{{ forloop.counter }}:  {{ usuario }}</li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+
+        <div>
+            <button><a href="{% url 'create_usuario' %}">CREAR USUARIO</a></button>
+        </div>
+
+
+    </div>
+    
+    <div class="crud">
+        <div id="details">
+            <div>
+                <p>DESCRIPCION DE LOS USUARIOS</p>
+            </div>
+        </div>
+
+        <div class="all_objects">
+            <table>
+                <thead>
+                    <th></th>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>EMAIL</th>
+                    <th>USERNAME</th>
+                    
+                    <th>ACCION</th>
+                </thead>
+                {% for usuario in usuarios %}
+                <tbody>
+                    <tr >
+                        <td>
+                            <input type="checkbox" data-id={{ usuario.id }}>
+                        </td>
+                        <td>
+                            {{ usuario.first_name }}
+
+                        </td>
+                        <td>{{ usuario.last_name }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>{{ usuario.username }}</td>
+                        
+
+                        <td> 
+                            <button><a href="{% url 'edit_usuario' usuario.id %}">EDITAR</a></button>
+                            <button><a href="{% url 'delete_usuario' usuario.id %}">BORRAR</a></button>
+                        </td>
+
+                    </tr>
+                </tbody>          
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

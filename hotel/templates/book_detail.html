@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <div class="row">
+    <div class="col-md-4 offset-md-4 mt-5">
+        <h1 class="text-secondary">{{reserva.id}}</h1>
+        {{ error }} 
+        <form action="" method="POST">
+           
+            {% csrf_token %}
+            {{form.as_div}}
+            <button class="btn btn-primary">Update</button>
+        </form> 
+    <div class="mt-5 d-flex">
+     <!--
+      <form action="{% url 'edit_book' reserva.id %}" method="POST">
+        {% csrf_token %}
+          <button class="btn btn-secondary ">Complete</button>
+     </form>-->
+    
+        <form action="{% url 'delete_book' reserva.id %}" method="POST">
+        {% csrf_token %}
+            <button class="btn btn-danger ms-3">Delete</button>
+        </form>
+    </div>
+    </div>
+    </div>
+
+
+{% endblock %}

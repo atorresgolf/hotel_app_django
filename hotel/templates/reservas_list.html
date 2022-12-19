@@ -1,0 +1,82 @@
+{% extends 'base_staff.html' %}
+{% block main %}
+<div class="wrapper">
+    
+    <div class="fast_dashboard">
+        <h3>CANTIDAD DE RESERVAS</h3>
+        <h2>{{ cantidad }}</h2>
+        
+        {% if cantidad < 5 %}
+            <ul  class="lista_tareas">
+                {% for reserva in reservas %}
+                    <li>{{ forloop.counter }}:  {{ reserva }}</li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+
+        <div>
+            <button><a href="{% url 'create_reserva' %}">CREAR RESERVA</a></button>
+        </div>
+
+
+    </div>
+    
+    <div class="crud">
+        <div id="details">
+            <div>
+                <p>DESCRIPCION DE LAS RESERVAS</p>
+            </div>
+        </div>
+
+        <div class="all_objects">
+            <table>
+                <thead>
+                    <th></th>
+                    <th>ROOM</th>
+                    <th>USUARIO</th>
+                    <th>CHECK_IN</th>
+                    <th>CHECK_OUT</th>
+                    <th>ADULTOS</th>
+                    <th>NIÑOS</th>
+                    <th>MONTO</th>
+                    <th>TELEFONO</th>
+                    
+                    <th>ACCION</th>
+                </thead>
+                {% for reserva in reservas %}
+                <tbody>
+                    <tr >
+                        <td>
+                            <input type="checkbox" data-id={{ reserva.id }}>
+                        </td>
+                        <td>
+                            {{ reserva.room }}
+
+                        </td>
+                        <td>{{ reserva.user }}</td>
+                        <td>{{ reserva.check_in }}</td>
+                        <td>{{ reserva.check_out }}</td>
+                        <td>{{ reserva.adultos }}</td>
+                        <td>{{ reserva.ninios }}</td>
+                        <td>{{ reserva.monto }}</td>
+                        <td>{{ reserva.telefono }}</td>
+
+                        <td> 
+                            <button><a href="{% url 'edit_reserva' reserva.id %}">EDITAR</a></button>
+                            <button><a href="{% url 'delete_reserva' reserva.id %}">BORRAR</a></button>
+                        </td>
+
+                    </tr>
+                </tbody>          
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

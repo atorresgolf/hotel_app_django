@@ -1,0 +1,68 @@
+{% extends 'base_staff.html' %}
+{% block main %}
+<div class="wrapper">
+    
+    <div class="fast_dashboard">
+        <h3>CANTIDAD DE CATEGORIAS</h3>
+        <h2>{{ cantidad }}</h2>
+        
+        {% if cantidad < 5 %}
+            <ul  class="lista_tareas">
+                {% for categoria in categorias %}
+                    <li>{{ forloop.counter }}:  {{ categoria }}</li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+
+        <div>
+            <button><a href="{% url 'create_cat_habitacion' %}">CREAR CATEGORIA</a></button>
+        </div>
+
+
+    </div>
+    
+    <div class="crud">
+        <div id="details">
+            <div>
+                <p>DESCRIPCION DE LAS CATEGORIAS SELECCIONADAS</p>
+            </div>
+        </div>
+
+        <div class="all_objects">
+            <table>
+                <thead>
+                    <th></th>
+                    <th>NOMBRE CATEGORIA</th>
+                    <th>DESCRIPCION</th>
+                    <th>ACCION</th>
+                </thead>
+                {% for categoria in categorias %}
+                <tbody>
+                    <tr >
+                        <td>
+                            <input type="checkbox" data-id={{ categoria.id }}>
+                        </td>
+                        <td>
+                            {{ categoria.nombre }}
+
+                        </td>
+                        <td>{{ categoria.descripcion }}</td>
+                        <td> 
+                            <button><a href="{% url 'edit_cat_habitacion' categoria.id %}">EDITAR</a></button>
+                            <button><a href="{% url 'delete_cat_habitacion' categoria.id %}">BORRAR</a></button>
+                        </td>
+
+                    </tr>
+                </tbody>          
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

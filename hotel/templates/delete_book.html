@@ -1,0 +1,17 @@
+{% extends 'base_staff.html' %}
+{% block main %}
+<div class="todo_form">
+    <p>Estas seguro que querés borrar la reserva: {{ reserva }} ? </p>
+
+   <form action="{% url 'delete_book' reserva.id %}" method="POST">
+        
+      {% csrf_token %}
+
+        <button>
+            <a href="{% url 'book' %}"> CANCELAR </a>
+        </button>  
+        
+        <input type="submit" value="BORRAR" name="confirmar">
+   </form>
+</div>
+{% endblock %}

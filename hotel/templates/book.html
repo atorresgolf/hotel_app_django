@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+        <section class="titulo">
+            <h1>RESERVAS</h1>
+        </section>
+
+       
+<div class="wrapper">
+    
+    <div class="fast_dashboard">
+        <h3>CANTIDAD DE RESERVAS</h3>
+        <h2>{{ cantidad }}</h2>
+        
+        {% if cantidad < 5 %}
+            <ul  class="lista_tareas">
+                {% for reserva in reservas %}
+                    <li>{{ forloop.counter }}:  {{ reserva }}</li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+
+        <div>
+            <button><a href="{% url 'create_book' %}">CREAR RESERVA</a></button>
+        </div>
+
+
+    </div>
+    
+    <div class="crud">
+        <div id="details">
+            <div>
+                <p>DESCRIPCION DE LAS RESERVAS SELECCIONADAS</p>
+            </div>
+        </div>
+
+        <div class="all_objects">
+            <table>
+                <thead>
+                    <th></th>
+                    <th>NOMBRE CATEGORIA</th>
+                    <th>DESCRIPCION</th>
+                    <th>ACCION</th>
+                </thead>
+                {% for reserva in reservas %}
+                <tbody>
+                    <tr >
+                        <td>
+                            <input type="checkbox" data-id={{ reserva.id }}>
+                        </td>
+                        <td>
+                            {{ reserva.room }}
+
+                        </td>
+                        <td>{{ reserva.monto }}</td>
+                        <td> 
+                            <button><a href="{% url 'edit_book' reserva.id %}">EDITAR</a></button>
+                            <button><a href="{% url 'delete_book' reserva.id %}">BORRAR</a></button>
+                        </td>
+
+                    </tr>
+                </tbody>          
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+          

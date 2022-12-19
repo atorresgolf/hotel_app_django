@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/e6f12faa36.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    />
+    <link rel="shortcut icon" href="{% static 'assets/img/png/icon.png' %}" />
+    <link rel="stylesheet" href="{% static 'css\style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css\login_form.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style_entretenimientos.css' %}">
+    <!--  <link rel="stylesheet" href="{% static 'css\style_contacto.css' %}">
+    <link rel="stylesheet" href="{% static 'css\style_entretenimientos.css' %}">
+    <link rel="stylesheet" href="{% static 'css\style_galeria.css' %}">
+    <link rel="stylesheet" href="{% static 'css\style_habitaciones.css' %}">
+    <link rel="stylesheet" href="{% static 'css\style_registro_usuarios.css' %}">
+    <link rel="stylesheet" href="{% static 'css\style_registro.css' %}">
+    <link rel="stylesheet" href="{% static 'css\style_reservas.css' %}">
+    <link rel="stylesheet" href="{% static 'css\style_servicios.css' %}">-->
+
+    <title>Home</title>
+  </head>
+  <body>
+    <header>
+      
+      {% if user.is_superuser %}
+      <!-- nav para el staff-->
+      <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+          <div class="container">
+            <a class="navbar-brand" href="/">Staff App</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+               <!-- <li class="nav-item">
+                  <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>-->
+    
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'habitacion_list' %}">Habitaciones</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'categoria_habitacion' %}">Categoria Habitacion</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'usuarios_list' %}">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'reservas_list' %}"
+                    >Reservas</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Clientes</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Log Out</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/signup">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">Login</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+<!-- end nav para el staff-->
+
+      {% else %}
+      <nav>
+      <div>
+        <img
+          src="{% static 'assets/img/png/logo_blanco.png' %}"
+          class="logo"
+          alt="logo"
+        />
+      </div>
+      <input type="checkbox" id="check" />
+      <label for="check" class="bar-btn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <ul class="nav-menu">
+        <li><a href="{% url 'index' %}" class="active">Home</a></li>
+        <li><a href="{% url 'habitaciones' %}">Habitaciones</a></li>
+        <li><a href="{% url 'create_book' %}">Reservas</a></li>
+        <li><a href="{% url 'servicios' %}">Servicios</a></li>
+        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+        
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'logout' %}">Log Out</a>
+        </li>
+        {% else %}
+        <li>
+          <a href="{% url 'login' %}"
+            ><i class="fa-solid fa-user icono_user"></i>Ingresa</a>
+        </li> 
+        <li>
+          <a href="{% url 'signup' %}">Registrate</a>
+        </li>   
+                {% endif %}
+      </ul>
+  </nav>
+      {% endif %}
+    </header>
+    <main class="container-fluid">{% block main %} {% endblock %}</main>
+    {% if user.is_superuser %}
+    <div></div>
+    {% else %}
+    <footer class="piePagina">
+      <div class="grupo-1">
+        <div class="box">
+          <figure>
+            <a href="#">
+              <img
+                src="{% static 'assets/img/png/logo_blanco.png' %}"
+                alt="Logo pie pagina"
+              />
+            </a>
+          </figure>
+        </div>
+        <div class="box">
+          <h2>SOBRE NOSOTROS</h2>
+          <p>
+            Python representa el trabajo de un grupo de personas dedicadas a la
+            excelencia en hoteles. Llevamos trabajando más de 40 años para
+            satisfacer las necesidades de nuestros huéspedes. Python es una
+            cadena de holetes que se encuentra en varios paises del Caribe y que
+            en cada uno de ellos se siguen los mismos estándares de excelencia.
+            Para más información, visite nuestras redes sociales.
+          </p>
+        </div>
+        <div class="box">
+          <h2>Siguenos</h2>
+          <div class="red-social">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-youtube"></a>
+          </div>
+        </div>
+      </div>
+      <div class="grupo-2">
+        <small
+          >&copy; 2022 <b>Hotel Python</b> - Todos los derechos
+          reservados.</small
+        >
+      </div>
+    </footer>
+    {% endif %}
+  </body>
+</html>

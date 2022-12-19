@@ -1,0 +1,76 @@
+{% extends 'base3.html' %}
+{% block main %}
+{% load static %}
+    <section class="header">
+        <h1>Nuestras Habitaciones</h1>
+        <a href="{% url 'index' %}">HOME</a>
+    </section>
+    <span class="linea"></span>
+    <section class="galeria">
+        <a href="#image1">
+            <img src="{% static 'assets/img/jpg/hab_1.jpg' %}" alt=""></a>
+        <a href="#image2">
+            <img src="{% static 'assets/img/webp/hab_2.webp' %}" alt=""></a>
+        <a href="#image3">
+            <img src="{% static 'assets/img/webp/hab_3.webp' %}" alt=""></a>
+        <a href="#image4">
+            <img src="{% static 'assets/img/webp/hab_4.webp' %}" alt=""></a>
+        <a href="#image5">
+            <img src="{% static 'assets/img/webp/hab_5.webp' %}" alt=""></a>
+        <a href="#image6">
+            <img src="{% static 'assets/img/webp/hab_6.webp' %}" alt=""></a>
+        <a href="#image7">
+            <img src="{% static 'assets/img/webp/hab_7.webp' %}" alt=""></a>
+        <a href="#image8">
+            <img src="{% static 'assets/img/webp/hab_8.webp' %}" alt=""></a>
+    </section>
+    <article class="light-box" id="image1">
+        <a href="#image8" class="next"><i class="fas fa-arrow-left"></i></a>
+        <img src="{% static 'assets/img/jpg/hab_1.jpg' %}" alt="">
+        <a href="#image2" class="next"><i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="close">X</a>
+      </article>
+    <article class="light-box" id="image2">
+        <a href="#image1" class="next"><i class="fas fa-arrow-left"></i></a>
+        <img src="{% static 'assets/img/webp/hab_2.webp' %}" alt="">
+        <a href="#image3" class="next"><i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="close">X</a>
+    </article>
+    <article class="light-box" id="image3">
+        <a href="#image2" class="next"><i class="fas fa-arrow-left"></i></a>
+        <img src="{% static 'assets/img/webp/hab_3.webp' %}" alt="">
+        <a href="#image4" class="next"><i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="close">X</a>
+    </article>
+    <article class="light-box" id="image4">
+        <a href="#image3" class="next"><i class="fas fa-arrow-left"></i></a>
+        <img src="{% static 'assets/img/webp/hab_4.webp' %}" alt="">
+        <a href="#image5" class="next"><i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="close">X</a>
+    </article>
+    <article class="light-box" id="image5">
+        <a href="#image4" class="next"><i class="fas fa-arrow-left"></i></a>
+        <img src="{% static 'assets/img/webp/hab_5.webp' %}" alt="">
+        <a href="#image6" class="next"><i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="close">X</a>
+    </article>
+    <article class="light-box" id="image6">
+        <a href="#image5" class="next"><i class="fas fa-arrow-left"></i></a>
+        <img src="{% static 'assets/img/webp/hab_6.webp' %}" alt="">
+        <a href="#image7" class="next"><i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="close">X</a>
+    </article>
+    <article class="light-box" id="image7">
+        <a href="#image6" class="next"><i class="fas fa-arrow-left"></i></a>
+        <img src="{% static 'assets/img/webp/hab_7.webp' %}" alt="">
+        <a href="#image8" class="next"><i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="close">X</a>
+    </article>
+    <article class="light-box" id="image8">
+        <a href="#image7" class="next"><i class="fas fa-arrow-left"></i></a>
+        <img src="{% static 'assets/img/webp/hab_8.webp' %}" alt="">
+        <a href="#image1" class="next"><i class="fas fa-arrow-right"></i></a>
+        <a href="#" class="close">X</a>
+    </article>
+    
+{% endblock %}

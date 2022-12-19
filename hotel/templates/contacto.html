@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block main %}
+        <section class="d-flex justify-content-center">
+            <div class="card col-mm-6 p-3" >
+                <div class="d-flex justify-content-center mb-3">
+                    <h4>Formulario Contacto</h4>
+                </div>
+                <div class="mb-2">
+                    <form action="https://formsubmit.co/melinayanguez@gmail.com" method="POST" target="_blank" id="form" novalidate>
+                        <div class="mb-2">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="ej: Anto" >
+                        </div>
+                        <div class="mb-2">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" class="form-control" name="apellido" id="apellido" placeholder="ej: Suarez">
+                        </div>
+                        <div class="mb-2">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="ej: Asuaarez@mail.com">
+                        </div>
+                        <div class="mb-2">
+                            <label for="sexo">Género</label>
+                            <input type="radio"  name="genero" id="masculino" value="masculino" > Masculino
+                            <input type="radio"  name="genero" id="femenino" value="femenino" > Femenino
+                            <input type="radio"  name="genero" id="nobinario" value="nobinario" > No Binario
+
+                        </div>
+                        <div class="mb-2">
+                            <label for="mensaje">Mensaje</label>
+                            <textarea name="mensaje" id="mensaje" class="form-control" placeholder="ej: Escriba aqui su mensaje..."></textarea>
+                        </div>
+                        <div class="mb-2">
+                            <button type="submit" class="btn btn-primary" value="enviar" id="btn-enviar"> Enviar</button>
+                        </div>
+                        <div class="mb-2">
+                            <p class="warnings" id="warnings"></p>
+                        </div>
+                <!--        <input type="hidden" name="_next" value="http://localhost:8000">-->
+                <input type="hidden" name="_next" value="http://atorresgolf.github.io/Codo/proyecto_codo/index.html">        
+              <!--  <input type="hidden" name="_captacha" value="false">-->
+                        
+                    </form>
+                </div>
+            </div>
+        </section>
+{% endblock %}

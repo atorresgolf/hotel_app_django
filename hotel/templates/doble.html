@@ -1,0 +1,55 @@
+{% extends 'base1.html' %}
+{% block main %}
+{% load static %}
+<h1>Doble</h1>
+   <section>
+      <div class="slideimg">
+         <div class="slideauto">
+           <ul>
+            <li><img src="{% static 'assets/img/jpg/d2.jpg' %}"></li>
+            <li><img src="{% static 'assets/img/jpg/rs2.jpg' %}"></li>
+            <li><img src="{% static 'assets/img/jpg/rs1.jpg' %}"></li>
+            <li><img src="{% static 'assets/img/jpg/b3.jpg' %}"></li>
+            <li><img src="{% static 'assets/img/jpg/1plaza.jpg' %}"></li>
+            <li><img src="{% static 'assets/img/jpg/vistabalcon.jpg' %}"></li>
+            <li><img src="{% static 'assets/img/jpg/balcon1.jpg' %}"></li>
+          </ul>
+        </div>
+    </div>
+    <div id="contenedor">
+     <div class="item-1"> 
+      <p>La habitación doble tiene 43 m2. Como su nombre lo indica, la habitación doble tiene dos dormitorios: uno con una cama tamaño king size y otro con dos camas de una plaza. Esta habitación es especial para una famila tipo.</p>
+      <br>
+      <p>También contiene una sala de estar con sofá y TV donde sentarse a disfrutar una comida o ver una serie o película. Además, la habitación cuenta con un balcón donde tomar sol o simplemente admirar la hermosa vista al mar.</p>
+      <br>
+        <img class="iconoshab" src="{% static 'assets/img/png/dog.png' %}">
+        <img class="iconoshab" src="{% static 'assets/img/png/sauna.png' %}">
+        <img class="iconoshab" src="{% static 'assets/img/png/dumbbell.png' %}">
+        <img class="iconoshab" src="{% static 'assets/img/png/salad.png' %}">
+       <br> 
+      <a href="{% url 'habitaciones' %}"><p><b>Volver a HABITACIONES</b></p></a>
+      </div>
+    <div class="item-2">
+    <h3>La habitación también cuenta con:</h3>
+    <ul>
+      <li> Guardarropa </li>
+      <li> Despertador </li>
+      <li> Smart tv</li>
+      <li> Sofá</li> 
+      <li> Mini bar</li>
+      <li> Aire acondicionado</li>
+      <li> Heladera</li>
+      <li> Teléfono para servicio al cuarto</li>
+      <li> Caja fuerte</li> 
+      <li> Juegos de mesa</li> 
+      <br>
+    <h3> En el baño: </h3>
+    <ul>
+      <li> Artículos de higiene personal </li>
+      <li> Secador de pelo</li>
+      <li> Bañera o ducha</li>
+      <li> Salida de baño</li> 
+    </div>
+    </div>
+   </section>
+   {% endblock %}

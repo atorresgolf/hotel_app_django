@@ -1,0 +1,81 @@
+{% extends 'base_staff.html' %}
+{% block main %}
+<div class="wrapper">
+    
+    <div class="fast_dashboard">
+        <h3>CANTIDAD DE HABITACIONES</h3>
+        <h2>{{ cantidad }}</h2>
+        
+        {% if cantidad < 5 %}
+            <ul  class="lista_tareas">
+                {% for habitacion in habitaciones %}
+                    <li>{{ forloop.counter }}:  {{ habitacion }}</li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+
+        <div>
+            <button><a href="{% url 'create_habitacion' %}">CREAR HABITACION</a></button>
+        </div>
+
+
+    </div>
+    
+    <div class="crud">
+        <div id="details">
+            <div>
+                <p>DESCRIPCION DE LAS HABITACIONES SELECCIONADAS</p>
+            </div>
+        </div>
+
+        <div class="all_objects">
+            <table>
+                <thead>
+                    <th></th>
+                    <th>NUMERO HABITACION</th>
+                    <th>PISO</th>
+                    <th>CAMAS</th>
+                    <th>CAPACIDAD</th>
+                    <th>PRECIO</th>
+                    <th>DETALLE</th>
+                    <th>ESTADO</th>
+                    <th>CATEGORIA</th>
+                    <th>ACCION</th>
+                </thead>
+                {% for habitacion in habitaciones %}
+                <tbody>
+                    <tr >
+                        <td>
+                            <input type="checkbox" data-id={{ habitacion.id }}>
+                        </td>
+                        <td>
+                            {{ habitacion.numero }}
+
+                        </td>
+                        <td>{{ habitacion.piso }}</td>
+                        <td>{{ habitacion.camas }}</td>
+                        <td>{{ habitacion.capacidad }}</td>
+                        <td>{{ habitacion.precio }}</td>
+                        <td>{{ habitacion.detalle }}</td>
+                        <td>{{ habitacion.estado }}</td>
+                        <td>{{ habitacion.categoria }}</td>
+
+                        <td> 
+                            <button><a href="{% url 'edit_habitacion' habitacion.id %}">EDITAR</a></button>
+                            <button><a href="{% url 'delete_habitacion' habitacion.id %}">BORRAR</a></button>
+                        </td>
+
+                    </tr>
+                </tbody>          
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

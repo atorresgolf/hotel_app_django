@@ -1,0 +1,49 @@
+{% extends 'base5.html' %}
+{% load static %}
+{% block main %}
+<section class="titulo">
+    <h1>RESERVAS DE: {{ user.first_name }}</h1>
+</section>
+
+
+<div class="container-fluid mx-auto">
+    
+    {% for reserva in reservas %}
+    <div class="container">
+<div class="card text-center alto_1" >
+              {% if reserva.room.categoria.nombre == 'Doble' %}
+                <img src="{% static 'assets/img/jpg/habitacion_3.jpg' %}" alt="habitacion_2" class="card_imagen">
+                {% endif %}      
+                {% if reserva.room.categoria.nombre == 'Superior' %}
+                <img src="{% static 'assets/img/jpg/habitacion_2.jpg' %}" alt="habitacion_2" class="card_imagen">
+                {% endif %} 
+                {% if reserva.room.categoria.nombre == 'Suite Presidencial' %}
+                <img src="{% static 'assets/img/jpg/habitacion_ancha.jpg' %}" alt="habitacion_4">
+                {% endif %} 
+                {% if reserva.room.categoria.nombre == 'Suite' %}
+                
+                <img src="{% static 'assets/img/jpg/habitacion_1.jpg' %}" alt="habitacion_2">
+                {% endif %} 
+    
+    <div class="card-body">
+      <h5 class="card-title">Reservado el: {{ reserva.fecha_reserva}}</h5>
+      
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Categoria de Habitación {{ reserva.room.categoria }}</li>
+      <li class="list-group-item">Num. camas: {{ reserva.room.camas }}</li>
+      <li class="list-group-item">Fecha check_in {{ reserva.check_in }}</li>
+      <li class="list-group-item">Fecha check_out {{ reserva.check_out }}</li>
+      <li class="list-group-item">Total a pagar: {{ reserva.monto }}</li>
+      <li class="list-group-item"></li>
+
+    </ul>
+    <div class="card-body">
+      <a href="{% url 'edit_book' reserva.pk  %}" class="btn btn-secondary btn-xs me-2 ">Modificar</a>
+      <a href="{% url 'index' %}" class="btn btn-dark btn-xs ms-2">Home</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

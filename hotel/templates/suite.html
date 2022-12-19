@@ -1,0 +1,54 @@
+{% extends 'base1.html' %}
+{% block main %}
+{% load static %}
+<h1>Suite</h1>
+   <section>
+      <div class="slideimg">
+         <div class="slideauto">
+           <ul>
+        <li><img src="{% static 'assets/img/jpg/s11.jpg' %}"></li>
+        <li><img src="{% static 'assets/img/jpg/balcon1.jpg' %}"></li>
+        <li><img src="{% static 'assets/img/jpg/b4.jpg' %}"></li>
+        <li><img src="{% static 'assets/img/jpg/toallas.jpg' %}"></li>
+        <li><img src="{% static 'assets/img/jpg/balcon11.jpg' %}"></li>
+        <li><img src="{% static 'assets/img/jpg/sala3.jpg' %}"></li>
+        <li><img src="{% static 'assets/img/jpg/s22.jpg' %}"></li>
+          </ul>
+        </div>
+    </div>
+    <div id="contenedor">
+     <div class="item-1"> 
+      <p>La habitación superior es un poco más espaciosa que la suite porque tiene 40 m2. También está compuesta por dos espacios: un dormitorio con una cama tamaño king size y una sala de estar donde relajarse y disfrutar.</p>
+      <br>
+      <p> Lo especial de este habitación es que tiene acceso directo a la playa exclusiva del hotel donde se encuentran reposeras y sombrillas para nuestros huéspedes.</p>
+      <br>
+        <img class="iconoshab" src="{% static 'assets/img/png/dog.png' %}">
+        <img class="iconoshab" src="{% static 'assets/img/png/sauna.png' %}">
+        <img class="iconoshab" src="{% static 'assets/img/png/dumbbell.png' %}">
+        <img class="iconoshab" src="{% static 'assets/img/png/salad.png' %}">
+       <br> 
+      <a href="{% url 'habitaciones' %}"><p><b>Volver a HABITACIONES</b></p></a>
+      </div>
+    <div class="item-2">
+    <h3>La habitación también cuenta con:</h3>
+    <ul>
+      <li> Guardarropa </li>
+      <li> Despertador </li>
+      <li> Smart tv</li>
+      <li> Sofá</li> 
+      <li> Mini bar</li>
+      <li> Aire acondicionado</li>
+      <li> Heladera</li>
+      <li> Teléfono para servicio al cuarto</li>
+      <li> Caja fuerte</li> 
+      <br>
+    <h3> En el baño: </h3>
+    <ul>
+      <li> Artículos de higiene personal </li>
+      <li> Secador de pelo</li>
+      <li> Bañera o ducha</li>
+      <li> Salida de baño</li> 
+    </div>
+    </div>           
+   </section>
+{% endblock %}

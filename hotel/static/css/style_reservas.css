@@ -1,0 +1,79 @@
+:root { 
+  --brand-color: rgb(142, 193, 214);
+  --dark-color: rgb(61, 75, 95);
+  --mid-color: rgb(203, 213, 225);
+  --light-color: rgb(249, 250, 251);
+ }
+
+
+.titulo {
+    background: var(--brand-color);
+    margin-top: 5px;
+    height: 35px;
+    width: 100%;
+   
+}
+.titulo h1{
+    color: var(--light-color);
+    font-size: 20px;
+    text-align: center;
+    padding: 5px 5px;
+}
+
+.container {
+    max-width: 80%;
+    margin: auto;
+  }
+  
+
+/*Book*/
+.todo_form{
+  display: flex;
+  flex-direction: column;
+
+  justify-content:space-between;
+  align-items: center;
+
+
+}
+
+.todo_form form{
+  text-align: justify;
+
+}
+
+.todo_form input{
+  margin: 1rem;
+  border: none;
+  border-bottom: 1px solid #888;
+  outline: none;
+
+}
+
+.todo_form textarea{
+  border: none;
+  border-bottom: 1px solid #888;
+  outline: none;
+  width: 20rem;
+  height: 2rem;
+}
+
+input[type=submit]{
+  border:1px solid #999 ;
+  border-radius: 5px;
+}
+
+.todo_form a:link , .todo_form a:visited {
+  color: black;
+}
+
+.lista_tareas{
+  text-align: left;
+}
+  
+  @media only screen and (max-width:768px) {
+    .grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  
+  }

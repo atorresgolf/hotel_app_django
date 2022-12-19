@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block main %}
+
+
+<div class="form_sign">
+    <div class="row mb-1">
+       <div class="col-md-4 offset-md-4 mt-1 ">
+        <div class="alto_1">
+        <form action="/signup/" method="POST" class="card card-body alto_1">
+            <h2 class="text-center">Registrate</h2>
+        {{ error }}
+            {% csrf_token %}
+           
+            <div class="mb-2">
+            <!--    <label for="username">Username:</label>-->
+                <input type="text" name="username" class="form-control" placeholder="Ingrese su username" id="username">
+            </div>
+            <div class="mb-2">
+           <!--     <label for="first_name">Nombre:</label>-->
+                <input type="text" name="first_name" class="form-control" placeholder="Ingrese su nombre " id="first_name">
+            </div>
+            <div class="mb-2">
+            <!--   <label for="last_name">Apellido:</label>--> 
+                <input type="text" name="last_name" class="form-control" placeholder="Ingrese su apellido " id="last_name">
+            </div>
+            <div class="mb-2">
+            <!--    <label for="email">Email:</label>-->
+                <input type="email" name="email" class="form-control" placeholder="Ingrese su email" id="email">
+            </div>
+
+            <div class="mb-2">
+          <!--      <label for="password1">Password:</label>-->
+                <input type="password" name="password1" class="form-control" placeholder="Write your password" id="password1">
+            </div>
+            <div class="mb-2">
+           <!--     <label for="password2">Confirm your password:</label>-->
+                <input type="password" name="password2" class="form-control" placeholder="Confirm your password" id="password2">
+            </div>
+            <button class="btn btn-primary mt-2">
+                Signup
+            </button>
+        
+        </form>
+    </div>
+       </div>
+    </div>
+
+</div>
+{% endblock %}
