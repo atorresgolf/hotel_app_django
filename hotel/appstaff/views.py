@@ -1,8 +1,9 @@
-from django.shortcuts import render,redirect, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404, HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required # para proteger las rutas
+from django.contrib import messages
 from django.db import IntegrityError
 from .models import CategoriaHabitacion, Habitacion, Reserva
 #importo el formulario
@@ -83,6 +84,101 @@ def create_book(request):
         'value': 'RESERVAR'
     }
     return render(request, 'create_book.html', ctx )
+def reservar(request):
+   # rooms = Habitacion.objects.all()
+    categorias = CategoriaHabitacion.objects.all()
+    if request.method == 'POST':
+        try:
+            print(request.POST)
+            rr = []
+            for each_book in Reserva.objects.all():
+                if str(each_book.check_in) < str(request.POST['check_in']) and str(each_book.check_out) < str(request.POST['check_out']): 
+                    pass
+                elif str(each_book.check_in) > str(request.POST['check_in']) and str(each_book.check_out) > str(request.POST['check_out']): 
+                    pass
+                else:
+                    rr.append(each_book.room.id)
+            personas = int(request.POST['adultos']) + int(request.POST['ninios'])
+            #print(personas)
+            room = Habitacion.objects.all().filter(capacidad__gte = int(personas)).exclude(id__in=rr)
+            #print(rr)
+            print(room)
+            if len(room) == 0:
+                messages.warning(request,'Perdón no hay habitaciones disponibles en esas fechas')
+            checkin = request.POST['check_in']
+            checkout = request.POST['check_out']
+            print(checkin)
+            data = {'rooms': room,
+            'categorias': categorias,
+            'checkin' : checkin,
+            'checkout' : checkout}
+            print(data)
+            return render(request,'reservar.html',data)
+
+        except Exception as e:
+            messages.error(request,e)
+            response = render(request, 'reservar.html', {})
+
+    else:
+        #data = {'rooms': rooms}
+        response = render(request, 'reservar.html', {})
+
+    return HttpResponse(response)
+
+def book_room_page(request):
+    room = Habitacion.objects.all().get(id=int(request.GET['roomid']))
+    categoria = CategoriaHabitacion.objects.all().get(nombre=room.categoria)
+    #print(categoria)
+    
+    return render(request, 'book_room.html', {
+        'room':room,
+        'categoria': categoria
+    })
+
+def book_room(request):
+    if request.method == "POST":
+        room_id = request.POST['room_id']
+        room = Habitacion.objects.all().get(id=room_id)
+        checkin = request.POST['check_in']
+        
+        date_checkin = datetime.strptime(checkin, '%Y-%m-%d')
+        checkout = request.POST['check_out']
+        date_checkout = datetime.strptime(checkout, '%Y-%m-%d')
+        #print((checkin))
+        days = (date_checkout-date_checkin).days
+        print(days)
+        price = days * room.precio
+        #para encontar las habitaciones reservadas en el mismo periodo de tiempo para excluirlas
+        for each_book in Reserva.objects.all().filter(room = room):
+            if str(each_book.check_in) < str(request.POST['check_in']) and str(each_book.check_out) < str(request.POST['check_out']):
+                pass
+            elif str(each_book.check_in) > str(request.POST['check_in']) and str(each_book.check_out) > str(request.POST['check_out']):
+                pass
+            else:
+                messages.warning(request,"Sorry This Room is unavailable for Booking")
+                return redirect("reservar")
+        current_user = request.user
+        total_person = int(request.POST['person'])
+        reserva_id = str(room_id) + str(date.today())
+        print(reserva_id)
+        reserva = Reserva()
+        room_object = Habitacion.objects.all().get(id=room_id)
+        room_object.estado ='0'
+        room_object.save()
+        user_object = User.objects.all().get(username=current_user)
+        reserva.user = user_object
+        reserva.check_in = request.POST['check_in']
+        reserva.check_out = request.POST['check_out']
+        reserva.monto = price
+        reserva.save()
+        print(reserva)
+        messages.success(request,'Felicitaciones! Reserva exitosa')
+        return redirect('index')
+    else:
+        return HttpResponse('no se pudo hacer')
+
+  
+
 
 def books_user(request):
     context = {}

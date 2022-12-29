@@ -38,6 +38,10 @@ urlpatterns = [
     path('delete_usuario/<int:id>', views.delete_usuario, name = 'delete_usuario'), 
     path('book/', views.book, name= 'book'),
     path('create_book/', views.create_book, name='create_book'),
+    path('reservar/', views.reservar, name='reservar'),
+    path('book_room', views.book_room_page, name='book_room_page'),
+    path('book_room/book', views.book_room, name='book_room'),
+
     path('edit_book/<int:id>', views.edit_book, name = 'edit_book'),
     path('editar_book/', views.editar_book, name='editar_book'),
     path('delete_book/<int:id>', views.delete_book, name = 'delete_book'),

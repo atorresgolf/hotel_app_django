@@ -40,6 +40,7 @@ class Reserva(models.Model):
     monto =  models.FloatField(null=True, blank=True)
     telefono = models.IntegerField(null=True, blank=True)
     comentario = models.CharField(max_length=150, blank=True, null=True)
+    reserva_id = models.CharField(max_length=100, default="null")
 
     def __str__(self):
         return f'El usuario:  {self.user.username} reserva habitacion: {self.room}'
