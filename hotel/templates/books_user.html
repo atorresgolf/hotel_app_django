@@ -28,7 +28,6 @@
 
     </ul>
     <div class="card-body">
- <!--     <a href="{% url 'editar_book' reserva.pk  %}" class="btn btn-light btn-xs me-2 ">Modificar</a>-->
  {% if reserva.estado != 0 %}     
  <a href="{% url 'cancel_book' reserva.pk  %}" class="btn btn-dark btn-xs me-2 ">Cancelar Reserva</a>
  {% else %}
@@ -91,7 +90,7 @@
 
                     </td>
                     <td>{{ reserva.room.categoria }}</td>
-                    <td><a name="" id="" class="btn btn-info" href="{% url 'editar_book' reserva.pk %}" role="button">Editar</a> 
+                    <td> 
                         | 
                         <a name="" id="" class="btn btn-danger" href="{% url 'cancel_book' reserva.pk %}" role="button">Cancelar</a></td>
                 </tr>
