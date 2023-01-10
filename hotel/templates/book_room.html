@@ -1,0 +1,83 @@
+{% extends 'base_book.html' %} {% block main %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-xlg-6 col-sm-12 mx-auto my-4 ">
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% load app_tags %}
+                <!--
+                <div class="form-group">
+                    <label for="room">Habitación:</label>
+                    <input type="text" class="form-control " id="room" name="room" disabled value={{room.categoria.nombre}}>
+                </div>
+            -->
+            {% if reserva %}
+                <div class="form-group">
+                    <label for="username">Codigo reserva:</label>
+                    <input type="text" class="form-control " id="reserva_id" name="reserva_id" disabled value={{reserva.reserva_id}}>
+                </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="user">username:</label>
+                    <input type="text" class="form-control " id="username" name="username" required="true" value={{request.user}}>
+                </div>
+                
+                <div class="form-group">
+                    <label for="chaeck_in">Check-in:</label>
+                    <input type="date" class="form-control " id="check_in" min={%todays_date%} max={% max_date %} placeholder="check in " name="check_in" disabled required="True" 
+                    value="{{checkin }}"                    >
+                </div>
+                <div class="form-group">
+                    <label for="chaeck_out">Check-Out:</label>
+                    <input type="date" class="form-control " id="check_out" min={%tommorow%} max={% max_date%} placeholder="check out " name="check_out" disabled required="True" value="{{checkout}}">
+                </div>
+                <div class="form-group">
+                    <label for="adultos">Adultos:</label>
+                    <input type="number" class="form-control " id="adultos" name="adultos" min="1" disabled required="true" value="{{adultos}}">
+                </div>
+                <div class="form-group">
+                    <label for="ninios">Niños:</label>
+                    <input type="number" class="form-control " id="ninios" name="ninios" min="0" disabled required="false" value="{{ninios}}">
+                </div>
+                <div class="form-group">
+                    <label for="roomtype">Room Type:</label>
+                    <input type="text" class="form-control " id="roomtype" name="roomtype" disabled value={{room.categoria.nombre}}>
+                </div>
+                <div class="form-group">
+                    <label for="person">Capacidad Hab:</label>
+                    <input type="number" class="form-control " id="person" name="person" min="1" max={{room.capacidad}} disabled required="true" value={{room.capacidad}}>
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio por noche:</label>
+                    <input type="number" class="form-control " id="price" placeholder="precio " name="precio" disabled value={{room.precio}}>
+                </div>
+                <div class="form-group">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="number"
+                      class="form-control" name="telefono" id="telefono" aria-describedby="helpId" placeholder="telefono" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="comentario" class="form-label">Comentarios:</label>
+                    <textarea class="form-control" name="comentario" id="comentario" rows="3"></textarea>
+                  </div>
+                  {% if messages %}
+                  <ul class="messages">
+                      {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                      {% endfor %}
+                  </ul>    
+              {% endif %}
+                  <div class="card_footer mt-1">
+                <button type="submit" class="btn btn-primary">Reservar</button>
+                <input type="hidden" name="room_id" value={{room.id}}>
+</div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

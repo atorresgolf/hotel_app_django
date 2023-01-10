@@ -108,11 +108,12 @@
         <ul class="nav-menu">
           <li><a href="{% url 'index' %}" class="active">Home</a></li>
           <li><a href="{% url 'habitaciones' %}">Habitaciones</a></li>
-          <li><a href="{% url 'create_book' %}">Reservas</a></li>
           <li><a href="{% url 'servicios' %}">Servicios</a></li>
           <li><a href="{% url 'contacto' %}">Contacto</a></li>
           
           {% if user.is_authenticated %}
+          <li><a href="{% url 'reservar_1' %}">Reservas</a></li>
+
           <li>
             <a href="{% url 'logout' %}">Log Out</a>
           </li>

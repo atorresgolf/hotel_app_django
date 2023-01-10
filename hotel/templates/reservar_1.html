@@ -1,0 +1,115 @@
+{% extends 'base_book.html' %} 
+{% load static %}
+{% block main %}
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card border-secondary bg-light mb-3">
+      <div class="card-body">
+
+  
+  
+    
+        <form action="" method="POST">
+            {% csrf_token %}
+          {% if reserva %}  
+            <div class="mb-3">
+              <label for="check_in" class="form-label">Codigo de reserva</label>
+              <input type="date"
+                class="form-control" name="reserva_cod" id="reserva_cod" aria-describedby="helpId" placeholder="" disabled value="{{reserva.reserva_cod}}">
+            </div>    
+            {% endif %}
+        <div class="mb-3">
+          <label for="check_in" class="form-label">Check In</label>
+          <input type="date"
+            class="form-control" name="check_in" id="check_in" aria-describedby="helpId" placeholder="">
+        </div>
+        <div class="mb-3">
+            <label for="check_out" class="form-label">Check Out</label>
+            <input type="date"
+              class="form-control" name="check_out" id="check_out" aria-describedby="helpId" placeholder="">
+          </div>
+          <div class="mb-3">
+            <label for="adultos" class="form-label">Adultos</label>
+            <input type="number"
+              class="form-control" name="adultos" id="adultos" aria-describedby="helpId" placeholder="">
+          </div>
+          <div class="mb-3">
+            <label for="ninios" class="form-label">Niños</label>
+            <input type="number"
+              class="form-control" name="ninios" id="ninios" aria-describedby="helpId" placeholder="" min="0" value="0">
+          </div>
+          
+          <div class="mb-3">
+            <label for="buscar" class="form-label">Buscar Habitación</label>
+            <input type="submit" value="Buscar disponibilidad"
+              class="form-control btn btn-primary" name="buscar" id="buscar" aria-describedby="helpId" placeholder="">
+          </div>
+          
+          {% if rooms %}
+                <p class="text-center text-success">Habitaciones disponibles:</p>
+               
+                
+                {% endif %}
+    </form>
+  </div>
+</div>
+</div>    
+<div class="col-sm-6">
+  <div class="card border-secondary bg-light mb-3">
+    <div class="card-body text-center">
+
+
+  <h5> Bienvenido! {{ user.first_name}}</h5>
+  <div>
+     <p>Si tienes reservas seleccione aqui</p>
+     <a href="{% url 'books_user' %}" class="btn btn-secondary btn-xs me-2 ">Ver reservas</a>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+
+<!--aca muestro resultados de habitaciones disponibles-->
+
+<div class="container-fluid px-0 mx-aut">
+  
+    {% if rooms %}
+       <table class="table">
+           <thead class="o">
+            <th>Categoría</th>
+            <th>Detalle</th>
+            <th>Capacidad</th>
+            <th>Precio</th>
+            <th>Action</th>
+        </thead>
+        {% for room in rooms %}
+            <tr class="">
+            <td>{{ room.categoria.nombre }}</td>
+            <td>{{ room.detalle }}</td>
+            <td>{{ room.capacidad }}</td>
+            <td>{{ room.precio }}</td>
+            {% if reserva %}
+            <td><a href="{% url 'booking_room_1' reserva.id room.id checkin checkout adultos ninios %}"><button class="btn btn-warning">Book Now</button></a></td>
+
+            {% else %}
+           <td><a href="{% url 'booking_room' room.id checkin checkout adultos ninios %}"><button class="btn btn-warning">Book Now</button></a></td>
+           {% endif %}
+            </tr>
+        {% endfor %}
+        
+       </table> 
+    {% endif %}
+</div>
+
+
+
+
+
+
+
+ 
+
+{% endblock %}

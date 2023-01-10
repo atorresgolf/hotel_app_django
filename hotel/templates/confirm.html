@@ -11,9 +11,11 @@
                     <h2 for="location">Resumen de su reserva</h2><br />
                     <div class="hotel-detail">
                         <img src="{{ room.image.url }}" name="room" class="room-img-fare" /><br />
+                        <h3>Usuario {{booking.user.first_name}} </h3>
                         <h4>Habitación tipo: {{ room.categoria }}</h4>
                         <p>{{ booking.adultos }} persona/s y {{ booking.ninios }} niños.</p>
                         <p>Noches de alojamientos:   {{ days }} </p>
+                        <p>Codigo de reserva:  {{ booking.reserva_cod }}</p>
                         <br>
                     </div>
                 </div>
@@ -33,12 +35,13 @@
                 <hr>
                 <div class="dates">
                     <div class="arrival">
-                        <label> Total a pagar : u$s {{ precio }}</label>
+                        <label> Total a pagar : u$s {{ price }}</label>
 
                     </div>
                 </div>
 
-                <a href="{% url 'success' %}" ><button class="btn btn-dark card-btn mt-2 mb-2" type="button">Confirmar Reserva</button></a>
+                <a href="{% url 'success' booking.id %}" ><button class="btn btn-dark card-btn mt-2 mb-2" type="button">Confirmar Reserva</button></a>
+
             </form>
 
 

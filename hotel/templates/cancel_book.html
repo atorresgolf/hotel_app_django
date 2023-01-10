@@ -1,0 +1,17 @@
+{% extends 'base_5.html' %}
+{% block main %}
+<div class="todo_form">
+    <p>Estas seguro que querés cancelar la reserva: {{ reserva }} ? </p>
+
+   <form action="{% url 'cancel_book' reserva.id %}" method="POST">
+        
+      {% csrf_token %}
+
+        <button>
+            <a href="{% url 'books_user' %}"> CANCELAR </a>
+        </button>  
+        
+        <input type="submit" value="BORRAR" name="confirmar">
+   </form>
+</div>
+{% endblock %}

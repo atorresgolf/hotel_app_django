@@ -1,6 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import User
+# mypaymentapp/models.py
+from decimal import Decimal
 
+'''from payments import PurchasedItem
+from payments.models import BasePayment
+
+class Payment(BasePayment):
+
+    def get_failure_url(self) -> str:
+        # Return a URL where users are redirected after
+        # they fail to complete a payment:
+        return f"http://example.com/payments/{self.pk}/failure"
+
+    def get_success_url(self) -> str:
+        # Return a URL where users are redirected after
+        # they successfully complete a payment:
+        return f"http://example.com/payments/{self.pk}/success"
+
+    def get_purchased_items(self) -> Iterable[PurchasedItem]:
+        # Return items that will be included in this payment.
+        yield PurchasedItem(
+            name='The Hound of the Baskervilles',
+            sku='BSKV',
+            quantity=9,
+            price=Decimal(10),
+            currency='USD',
+        )'''
 # Create your models here.
 class CategoriaHabitacion(models.Model):
     class Meta:
@@ -40,6 +66,9 @@ class Reserva(models.Model):
     monto =  models.FloatField(null=True, blank=True)
     telefono = models.IntegerField(null=True, blank=True)
     comentario = models.CharField(max_length=150, blank=True, null=True)
+    reserva_cod = models.CharField(max_length=100, default="null")
+    estado = models.IntegerField(default=2, help_text= 'Anulada 0, Confirmada 1, Pendiente 2')
+
 
     def __str__(self):
         return f'El usuario:  {self.user.username} reserva habitacion: {self.room}'

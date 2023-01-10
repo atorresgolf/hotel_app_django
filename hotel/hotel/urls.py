@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -38,16 +38,19 @@ urlpatterns = [
     path('delete_usuario/<int:id>', views.delete_usuario, name = 'delete_usuario'), 
     path('book/', views.book, name= 'book'),
     path('create_book/', views.create_book, name='create_book'),
-    path('edit_book/<int:id>', views.edit_book, name = 'edit_book'),
-    path('editar_book/', views.editar_book, name='editar_book'),
-    path('delete_book/<int:id>', views.delete_book, name = 'delete_book'),
-    path('book_detail/<int:id>', views.book_detail, name='book_detail'),
-    path('books_user/',views.books_user , name="books_user"),
+    path('reservar_1/', views.reservar_1, name='reservar_1'),
 
-    path('room/',views.room , name="room"),
-    path('confirm/<int:pk>', views.fare, name ='confirm'),
-    path('<int:pk>/', views.fare, name='fare'),
-    path('success/', views.success, name="success"),
+ 
+    path('booking_room/<int:roomid>/<str:checkin>/<str:checkout>/<int:adultos>/<int:ninios>', views.booking_room, name='booking_room'),
+    path('cancel_book/<int:id>/', views.cancel_book, name = 'cancel_book'),
+
+    path('edit_book/<int:id>/', views.edit_book, name = 'edit_book'),
+    path('delete_book/<int:id>/', views.delete_book, name = 'delete_book'),
+    path('book_detail/<int:id>/', views.book_detail, name='book_detail'),
+    path('books_user/',views.books_user , name="books_user"),
+    path('confirm/<int:pk>', views.confirmar, name ='confirmar'),
+    path('<int:pk>/', views.confirmar, name='confirmar'),
+    path('success/<int:id>', views.success, name="success"),
     path('habitaciones/', views.habitaciones, name='habitaciones'),
     path('reservas/', views.reservas, name='reservas'),
     path('reservas_list/', views.reservas_list, name='reservas_list'),
@@ -68,7 +71,18 @@ urlpatterns = [
     path('signup/', views.signup, name='signup' ),
     path('logout/', views.signout, name='logout' ),
     path('login/', views.signin, name='login' ),
+    #path('reservar/', views.reservar, name='reservar'),
+   # path('payments/', include('payments.urls')),
+    #path('__debug__/', include('debug_toolbar.urls')),
+  # path('book_room/', views.book_room_page, name='book_room_page'),
+   # path('book_room/book', views.book_room, name='book_room'),
+  # path('editar_book/<int:id>/', views.editar_book, name='editar_book'),
+  #  path('editar_room/<int:id>/', views.editar_room, name='editar_room'),
 
+    #path('room/',views.room , name="room"),
+   # path('confirm/<int:pk>', views.fare, name ='confirm'),
+   # path('<int:pk>/', views.fare, name='fare'),
+ 
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

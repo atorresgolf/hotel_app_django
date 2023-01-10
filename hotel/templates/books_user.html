@@ -6,44 +6,108 @@
 </section>
 
 
-<div class="container-fluid mx-auto">
-    
+<div class="row">
+  <div class="card-deck">  
     {% for reserva in reservas %}
-    <div class="container">
-<div class="card text-center alto_1" >
-              {% if reserva.room.categoria.nombre == 'Doble' %}
-                <img src="{% static 'assets/img/jpg/habitacion_3.jpg' %}" alt="habitacion_2" class="card_imagen">
-                {% endif %}      
-                {% if reserva.room.categoria.nombre == 'Superior' %}
-                <img src="{% static 'assets/img/jpg/habitacion_2.jpg' %}" alt="habitacion_2" class="card_imagen">
-                {% endif %} 
-                {% if reserva.room.categoria.nombre == 'Suite Presidencial' %}
-                <img src="{% static 'assets/img/jpg/habitacion_ancha.jpg' %}" alt="habitacion_4">
-                {% endif %} 
-                {% if reserva.room.categoria.nombre == 'Suite' %}
-                
-                <img src="{% static 'assets/img/jpg/habitacion_1.jpg' %}" alt="habitacion_2">
-                {% endif %} 
-    
+    <div class="col-sm-6">
+<div class="card text-center border-secondary alto_1 bg-light mb-3" >
+             
+  <!--  
     <div class="card-body">
-      <h5 class="card-title">Reservado el: {{ reserva.fecha_reserva}}</h5>
+      <p class="card-title">Reservado el: {{ reserva.fecha_reserva}}</p>
       
-    </div>
+    </div>-->
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Categoria de Habitación {{ reserva.room.categoria }}</li>
+      <li class="list-group-item">Fecha de reserva: {{reserva.fecha_reserva}}</li>
+      <li class="list-group-item">Cod. de reserva: {{reserva.reserva_cod}} Estado: {{reserva.estado }}</li>
+      <li class="list-group-item">Categoria de Habitación: {{ reserva.room.categoria }}</li>
       <li class="list-group-item">Num. camas: {{ reserva.room.camas }}</li>
       <li class="list-group-item">Fecha check_in {{ reserva.check_in }}</li>
       <li class="list-group-item">Fecha check_out {{ reserva.check_out }}</li>
       <li class="list-group-item">Total a pagar: {{ reserva.monto }}</li>
-      <li class="list-group-item"></li>
 
     </ul>
     <div class="card-body">
-      <a href="{% url 'edit_book' reserva.pk  %}" class="btn btn-secondary btn-xs me-2 ">Modificar</a>
-      <a href="{% url 'index' %}" class="btn btn-dark btn-xs ms-2">Home</a>
+ <!--     <a href="{% url 'editar_book' reserva.pk  %}" class="btn btn-light btn-xs me-2 ">Modificar</a>-->
+ {% if reserva.estado != 0 %}     
+ <a href="{% url 'cancel_book' reserva.pk  %}" class="btn btn-dark btn-xs me-2 ">Cancelar Reserva</a>
+ {% else %}
+ <a href="{% url 'reservar_1'  %}" class="btn btn-secondary btn-xs me-2 ">ir a Reservar</a>
+
+      <a href="{% url 'index'  %}" class="btn btn-secondary btn-xs me-2 ">Home</a>
+{% endif %}
     </div>
+    {% if reserva.room.categoria.nombre == 'Doble' %}
+    <img src="{% static 'assets/img/jpg/habitacion_3.jpg' %}" alt="habitacion_2" class="card-img-bottom text-center" width='150' height="150">
+    {% endif %}      
+    {% if reserva.room.categoria.nombre == 'Superior' %}
+    <img src="{% static 'assets/img/jpg/habitacion_2.jpg' %}" alt="habitacion_2" class="card-img-bottom text-center" width='150' height="150">
+    {% endif %} 
+    {% if reserva.room.categoria.nombre == 'Suite Presidencial' %}
+    <img src="{% static 'assets/img/jpg/habitacion_ancha.jpg' %}" alt="habitacion_4" class="card-img-bottom text-center" width='150' height="150">
+    {% endif %} 
+    {% if reserva.room.categoria.nombre == 'Suite' %}
+    
+    <img src="{% static 'assets/img/jpg/habitacion_1.jpg' %}" alt="habitacion_2" class="card-img-bottom text-center" width='150' height="150">
+    {% endif %} 
+    
   </div>
 </div>
 {% endfor %}
 </div>
+</div>
+
+
+<!--
+
+<div class="container">
+  <div class="row w-100">
+      <div class=" ">
+        <br>
+         <div class="card w-80 ancha">
+            <div class="card-header">
+                <a name="" id="" class="btn btn-success" href="{% url 'reservar_1' %}" role="button">Reservar una habitacion</a>
+             </div>
+           <div class="card-body">
+                 <h4 class="card-title">Reservas</h4>
+           <div class="table-responsive">
+             <table class="table table-primary">
+            <thead>
+                <tr>
+                    <th scope="col">Reserva_ID</th>
+                    <th scope="col">Check In</th>
+                    <th scope="col">Check Out</th>
+                    <th scope="col">Cat.Habitacion</th>
+                    <th scope="col">Acción</th>
+
+                </tr>
+            </thead>
+            <tbody>
+              {% for reserva in reservas %}
+              <tr class="">
+                    <td scope="row">{{ reserva.reserva_cod }}</td>
+                    <td>{{ reserva.check_in }}</td>
+                    <td>{{reserva.check_out}}
+
+                    </td>
+                    <td>{{ reserva.room.categoria }}</td>
+                    <td><a name="" id="" class="btn btn-info" href="{% url 'editar_book' reserva.pk %}" role="button">Editar</a> 
+                        | 
+                        <a name="" id="" class="btn btn-danger" href="{% url 'cancel_book' reserva.pk %}" role="button">Cancelar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+       </div>
+       
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+ </div>
+</div>
+</div>
+</div>
+</div>
+-->
 {% endblock %}

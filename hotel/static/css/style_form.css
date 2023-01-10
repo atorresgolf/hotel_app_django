@@ -58,3 +58,125 @@ input[type=submit]{
 .todo_form a:link , .todo_form a:visited {
     color: black;
 }
+
+/*CARDS*/
+/* box-shadow: 3.9px 7.8px 7.8px hsla(0deg 0% 0% 0% 0.38);*/
+.contenedor_habitaciones {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /*esto lo hace responsive*/
+    margin-bottom: 30px;
+}
+.cards_habitaciones {
+    width: 300px;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    transition: 0.2s;
+    
+}
+.card_img img {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+}
+.card_imagen img {
+    width: 60%;
+    text-align: center;
+   
+}
+.book_user {
+    border: solid 1px grey;
+    display: flex;
+    box-sizing: border-box;
+    margin: 10px;
+  }
+ .alto_1 {
+
+     height: 80vh;
+ } 
+  .alto {
+    border: solid 1px blue;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+  }
+
+
+.card_body h2{
+    text-align: center;
+    font-size: 20px;
+}
+.card_body p {
+    text-align: justify;
+    margin-bottom: 10px;
+    padding: 5px;
+    line-height: 1.2;
+    color: var(--dark-color);
+    font-size: 16px;
+}
+.card_footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card_footer button {
+    width: 150px;
+    color: var(--brand-color);
+    border: 2px solid var(--brand-color);
+    border-radius: 15px;;
+    padding: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: 0.2s; /*hace la transicion del hover mas lenta*/
+}
+.card_footer button:hover {
+    background: var(--brand-color);
+    color:var(--light-color);
+    border: 2px solid #fff;
+
+}
+.cards_habitaciones:hover {
+    box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
+}
+
+
+@media screen and (min-width: 480px) {
+    .pagination_item {
+        width: 25px;
+        height: 25px;
+}
+.card_body h2{
+    font-size: 25px;
+}
+.card_body p {
+    line-height: 1.5;
+    font-size: 20px;
+}
+.card_footer button {
+    font-size: 17px;
+
+}
+}
+
+@media screen and (min-width: 768px) {
+    .pagination_item {
+        width: 35px;
+        height: 35px;
+}
+.card_body h2{
+    font-size: 30px;
+}
+.card_body p {
+    line-height: 1.8;
+    font-size: 26px;
+
+}
+.card_footer button {
+    font-size: 20px;
+
+}
+}
